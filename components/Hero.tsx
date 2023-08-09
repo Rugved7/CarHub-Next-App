@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import React from "react";
-import Button from "./Button";
+import Button from "./Button";  
 export default function Hero() {
-  const handleScroll = () => {};
+  const handleScroll = () => {
+
+    
+  };
 
   return (
     <div className="hero">
