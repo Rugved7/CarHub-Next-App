@@ -8,3 +8,8 @@ export interface Buttonprops {
   handleClick?: MouseEventHandler<HTMLButtonElement>;
   btnType?: "button" | "submit";
 }
+
+export interface SearchCarprops{
+  manufacturer : String
+  setManufacturer : (manufacturer:string) => void
+}
