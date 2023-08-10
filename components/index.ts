@@ -5,12 +5,6 @@ import Navbar from "./Navbar";
 import Filter from "./Filter";
 import Search from "./Search";
 import SearchCar from "./SearchCar";
-export {
-  Hero,
-  Button,
-  Footer,
-  Navbar,
-  Filter,
-  Search,
-  SearchCar
-}
+import Car from "./Car";
+import Details from "./Details";
+export { Hero, Button, Footer, Navbar, Filter, Search, SearchCar,Car,Details};
