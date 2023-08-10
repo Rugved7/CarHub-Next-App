@@ -10,7 +10,7 @@ export default function Home() {
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
           <h1 className="text-4xl">Cars Catalogue</h1>
-          <p>Explore the cars you might like and desire...</p>
+          <p>Explore the cars you might like and desire like share and subscribe...</p>
         </div>
           
         {/* Create The Filters */}
