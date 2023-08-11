@@ -20,7 +20,8 @@ export default function Navbar() {
         <Button
           title="Sign in"
           btnType="button"
-          containerStyles="text-primary-black text-bold rounded-full bg-white min-w-[130px]"
+          containerStyles="text-primary-black text-semibold rounded-full bg-white min-w-[130px] font-bold "
+         
         />
       </nav>
     </header>

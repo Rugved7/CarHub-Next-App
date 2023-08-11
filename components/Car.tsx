@@ -2,9 +2,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { CarProps } from "@/types";
-import { calculateCarRent } from "@/utils";
+import { calculateCarRent, generateCarImageUrl } from "@/utils";
 import Button from "@/components/Button";
-import { Details } from ".";
+import Details from "./Details";
 
 interface CarCardProps {
   car: CarProps;
@@ -36,7 +36,7 @@ const [isOpen,setIsOpen] = useState(false)
       {/* Rendering the image for the cars */}
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src="/hero.png"
+          src={generateCarImageUrl(car)}
           alt="Car Image"
           fill
           priority
@@ -98,8 +98,7 @@ const [isOpen,setIsOpen] = useState(false)
         </div>
       </div>
       {/* Displaying car details */}
-      <Details isOpen={isOpen} closeModal={() =>
-      setIsOpen(false)}car={car}/>
+      <Details isOpen={isOpen} closeModal={()=> setIsOpen(false)} car={car}/>
     </div>
   );
 }

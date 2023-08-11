@@ -21,7 +21,7 @@ export default function Hero() {
         {/* load the Button component as we will reuse it most of the times */}
         <Button
           title="Explore Cars"
-          containerStyles="bg-primary-blue text-white rounded-full mt-10"
+          containerStyles="bg-primary-blue text-white rounded-full mt-10 font-bold "
           handleClick={handleScroll} // made this function above
         />
       </div>
