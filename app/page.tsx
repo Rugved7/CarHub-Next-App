@@ -1,16 +1,17 @@
-import { Car, Filter, Hero, Search } from "@/components";
+import { Car, Hero } from "@/components";
+import { HomeProps } from "@/types";
 
 import { fetchCars } from "@/utils";
 
-export default async function Home({searchParams}) {
+export default async function Home({ searchParams }:HomeProps) {
   // importing the results form the API
 
   const allCars = await fetchCars({
-    manufacturer: searchParams.manufacturer || '',
+    manufacturer: searchParams.manufacturer || "",  
     year: searchParams.year || 2022,
-    fuel: searchParams.fuel || '',
-    limit:searchParams.limit || 10,
-    model:searchParams.model || '',
+    fuel: searchParams.fuel || "",
+    limit: searchParams.limit || 10,
+    model: searchParams.model || "",
   });
   // before fetching the data , we need to know that data is empty
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
@@ -27,11 +28,11 @@ export default async function Home({searchParams}) {
         </div>
         {/* Fetching the Actual data */}
         {!isDataEmpty ? (
-          <section> 
+          <section>
             {/* bringing actual cars */}
             <div>
               {allCars?.map((car) => (
-                <Car car={car}/>   // render the car Card component (we named it as Car.tsx)
+                <Car car={car} /> // render the car Card component (we named it as Car.tsx)
               ))}
             </div>
           </section>
