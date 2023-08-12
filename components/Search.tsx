@@ -2,12 +2,52 @@
 import { useState } from "react"; // to know what state of car is being used
 import React from "react";
 import { SearchCar } from ".";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+// Search bar componenet
+const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
+  <button type="submit" className={`-ml-3 z-10 ${otherClasses}`}>
+    <Image
+      src="/magnifying-glass.svg"
+      alt="Search"
+      width={40}
+      height={40}
+      className="object-contain"
+    />
+  </button>
+);
 
 export default function Search() {
   const [manufacturer, setManufacturer] = useState("");
+  const [model, setModel] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = () => {
-    console.log("submit");
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (manufacturer === "" && model === "") {
+      return alert("Please select a manufacturer first");
+    }
+    updateSearchedParams(model.toLowerCase(), manufacturer.toLowerCase());
+  };
+
+  const updateSearchedParams = (model: string, manufacturer: string) => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (model) {
+      searchParams.set("model", model);
+    } else {
+      searchParams.delete("model");
+    }
+    if (manufacturer) {
+      searchParams.set("manufacturer", manufacturer);
+    } else {
+      searchParams.delete("manufacturer");
+    }
+    const newPathname = `${
+      window.location.pathname
+    }?${searchParams.toString()}`;
+    router.push(newPathname);
   };
 
   return (
@@ -15,10 +55,31 @@ export default function Search() {
       <div className="searchbar__item">
         {/* Here we will render the search manufacturer component */}
         <SearchCar
-          manufacturer={manufacturer}  // the state of manufacturer is sent as props to the SearchCar component
+          manufacturer={manufacturer} // the state of manufacturer is sent as props to the SearchCar component
           setManufacturer={setManufacturer}
         />
+        <SearchButton otherClasses="sm:hidden" />
       </div>
+      {/* second input tag */}
+      <div className="searchbar__item">
+        <Image
+          src="/model-icon.png"
+          width={25}
+          height={25}
+          className="absolute w-[20px] h-[20px] ml-4"
+          alt="Imagea"
+        />
+        <input
+          type="text"
+          name="model"
+          value={model}
+          onChange={(e) => setModel(e.target.value)}
+          placeholder="Tiguan"
+          className="searchbar__input"
+        />
+        <SearchButton otherClasses="sm:hidden" />
+      </div>
+      <SearchButton otherClasses="max-sm:hidden " />
     </form>
   );
 }
